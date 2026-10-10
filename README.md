@@ -18,7 +18,7 @@ Three pieces talk to each other:
 data/campus_customs.db       the ORIGINAL database (never written by the app)
 data/campus_customs_new.db   the WORKING copy the tools update (committed in its final state, after the full run)
 backend/                     FastAPI + the five agents (backend/prompts/ = one prompt file per agent)
-mcp_server/                  the MCP server and the database reset
+mcp_server/                  server.py (the MCP server) and db.py (the database reset)
 frontend/                    the React board
 scripts/                     tests and the scripts that built the evidence
 output/                      the evidence: desk_tickets.html, resolved_board.html, resolved_tickets.json,
@@ -66,10 +66,10 @@ cp data/campus_customs.db data/campus_customs_new.db
 ## 2. Start the MCP server
 
 ```bash
-python mcp_server/mcp_server.py
+python mcp_server/server.py
 ```
 
-It talks over stdio and reads/writes `data/campus_customs_new.db` only. The backend starts its own copy for the agents, so you don't need to leave this running for the dashboard. Run it by hand to test it, or to connect it to an MCP client such as Claude Code (see `mcp.json.example`). To check every tool and money rule without an API key:
+It talks over stdio and reads/writes `data/campus_customs_new.db` only. The backend starts its own copy for the agents, so you don't need to leave this running for the dashboard. Run it by hand to test it, or to connect it to an MCP client such as Claude Code: the repo ships a `.mcp.json` that points at it (start the client from the repo root, after creating the `venv`). To check every tool and money rule without an API key:
 
 ```bash
 python scripts/check_tools.py

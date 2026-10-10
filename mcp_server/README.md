@@ -38,4 +38,4 @@ Human only (the backend gives these to no agent):
 - Amounts come from the database, not from the caller.
 - Nothing is emailed and no vendor is contacted.
 
-**Run it:** `venv/bin/python mcp_server/mcp_server.py` from the `hw5/` folder. The project's `.mcp.json` (repo root) points the vibe coder at it, and `backend/team.py` starts it for the agents.
+**Run it:** `venv/bin/python mcp_server/server.py` from the `hw5/` folder. The repo's `.mcp.json` (repo root) points the vibe coder at it, and `backend/team.py` starts it for the agents.

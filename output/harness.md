@@ -113,7 +113,7 @@ Created by `mcp_server/db.py` after each reset. The original database never has 
 
 ## 2. MCP tools (18) and the tables they use
 
-`mcp_server/mcp_server.py` (FastMCP). Shop facts and every change go through these tools. There is no second tools layer. "Today" always comes from `desk.date_today`. Each tool was also called through the vibe coder's MCP connection and checked against the database (`output/mcp_smoke.json`).
+`mcp_server/server.py` (FastMCP). Shop facts and every change go through these tools. There is no second tools layer. "Today" always comes from `desk.date_today`. Each tool was also called through the vibe coder's MCP connection and checked against the database (`output/mcp_smoke.json`).
 
 | Tool | Table(s) | What it does, and which agent uses it |
 |---|---|---|

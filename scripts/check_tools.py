@@ -16,7 +16,7 @@ os.environ["CAMPUS_DB"] = str(scratch)
 sys.path.insert(0, str(ROOT / "mcp_server"))
 
 import db  # noqa: E402
-import mcp_server as m  # noqa: E402
+import server as m  # noqa: E402
 
 from fastmcp import Client  # noqa: E402
 

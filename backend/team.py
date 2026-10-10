@@ -1,7 +1,7 @@
 """The Campus Customs agent team: five PydanticAI agents with full connectivity.
 
 Every agent can delegate to every other agent. All shop facts and all changes go through the
-MCP server (mcp_server/mcp_server.py); there is no other tools layer here. Each agent only sees
+MCP server (mcp_server/server.py); there is no other tools layer here. Each agent only sees
 the MCP tools on its own allowlist, and the human-only tools (approve_request, reject_request)
 are on nobody's list.
 """
@@ -27,7 +27,7 @@ from .models import (AGENT_NAMES, MAX_DEPTH, MAX_OUTPUT_TOKENS, MAX_PAIR_REPEATS
 
 HW_DIR = Path(__file__).resolve().parent.parent
 PROMPTS = Path(__file__).resolve().parent / "prompts"
-MCP_SERVER = HW_DIR / "mcp_server" / "mcp_server.py"
+MCP_SERVER = HW_DIR / "mcp_server" / "server.py"
 
 # Which MCP tools each agent may call. approve_request and reject_request are human-only.
 TOOLS_BY_AGENT: dict[str, set[str]] = {
