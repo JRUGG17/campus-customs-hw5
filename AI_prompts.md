@@ -316,3 +316,13 @@ are all of the failed attempts in the audit log?
 problem 10: reflection
 open output/desk_ticket.html and fill the reflection tab that I answered in our own vibe, but be detailed and thorough. So how would you evaluate the performance of the agents on each ticket? Why? For each ticket, how did the actual compare to expected? What would have been simpler as one agent with tools? And why? Describe three new problems campus customs might face that this agent team could solve with tools you built. Describe three new problems campus customs might face that this agent team could not solve and explain the tools the agents would need to solve them. So we got a tie every answer to this app and the three tickets we ran. Use ticket tabs and cache tab on the same page as our evidence. Generic AI essays without campus custom details will score low.
 ```
+
+## Problem 11 — Submit to GitHub
+
+### Prompt 1
+
+```
+problem 11 is submit to GitHub.
+
+So I gotta push the code to a public GitHub repository so we gotta submit the repo URL. Um, and also put it in output/github_url.txt Also, we don't push the real.env to the GitHub repo. But we do include both database files under data/ So graders can run the app easily. readme should explain copy original database to the working copy when you need a clean run. Start MCP server. Start fast API backend. Start the React board. Reset the database before a full three ticket run.
+```
