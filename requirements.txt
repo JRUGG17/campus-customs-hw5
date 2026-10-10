@@ -1,0 +1,8 @@
+# Python 3.11+ (built and tested on 3.14)
+fastmcp==4.1.0            # the MCP server
+pydantic-ai==2.55.0       # the five agents
+openai==3.28.0            # model client (used through Portkey)
+python-dotenv==1.2.4      # loads PORTKEY_API_KEY from .env
+fastapi==0.143.0          # the backend
+uvicorn[standard]==0.54.0 # runs the backend (--reload needs the standard extras)
+httpx==0.28.1             # used by FastAPI's test client in scripts/check_routes.py

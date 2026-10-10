@@ -1,0 +1,21 @@
+# Secrets: never commit the real key. .env.example is the template.
+.env
+.env.*
+!.env.example
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Node / React
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+
+# NOTE: the two databases in data/ ARE committed on purpose, so the app runs right after cloning.

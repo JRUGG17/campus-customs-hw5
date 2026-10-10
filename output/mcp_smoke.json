@@ -1,0 +1,85 @@
+{
+  "server": "campus-customs",
+  "database": "data/campus_customs.db (values); tools read data/campus_customs_new.db, identical at this point",
+  "shop_today": "2026-08-31",
+  "called_through": "Claude Code MCP connection",
+  "tests": [
+    {
+      "tool": "check_stock",
+      "prompt": "Using the campus-customs MCP tool, how many size M Basic Hoodies (CC-HOOD-NAVY) are in stock? I need it for ticket 103.",
+      "arguments": {
+        "sku": "CC-HOOD-NAVY",
+        "size": "M"
+      },
+      "output": {
+        "sku": "CC-HOOD-NAVY",
+        "name": "Basic Hoodie Big Yale",
+        "size": "M",
+        "qty": 8,
+        "location": "Aisle A"
+      },
+      "database_values": {
+        "sku": "CC-HOOD-NAVY",
+        "name": "Basic Hoodie Big Yale",
+        "size": "M",
+        "qty": 8,
+        "location": "Aisle A"
+      },
+      "matches_database": true
+    },
+    {
+      "tool": "get_invoice_status",
+      "prompt": "Using the campus-customs MCP tool, look up invoice 501. Who is it owed to, and is it overdue? I need it for ticket 101.",
+      "arguments": {
+        "invoice_id": 501
+      },
+      "output": {
+        "invoice_id": 501,
+        "vendor_id": 1,
+        "vendor_name": "Bulldog Print Co",
+        "specialty": "apparel reprint",
+        "lead_days": 5,
+        "amount": 840,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S",
+        "today": "2026-08-31",
+        "is_open": true,
+        "is_overdue": true
+      },
+      "database_values": {
+        "vendor_name": "Bulldog Print Co",
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "is_overdue": true
+      },
+      "matches_database": true
+    },
+    {
+      "tool": "get_lease_status",
+      "prompt": "Using the campus-customs MCP tool, check lease 1. How much is the rent, and how many days until it's due? I need it for ticket 102.",
+      "arguments": {
+        "lease_id": 1
+      },
+      "output": {
+        "lease_id": 1,
+        "space_name": "Chapel Street shop",
+        "landlord": "Elm City Properties",
+        "monthly_rent": 2400,
+        "next_due": "2026-09-02",
+        "notes": null,
+        "days_until_due": 2,
+        "today": "2026-08-31",
+        "is_overdue": false
+      },
+      "database_values": {
+        "landlord": "Elm City Properties",
+        "monthly_rent": 2400.0,
+        "next_due": "2026-09-02",
+        "days_until_due": 2
+      },
+      "matches_database": true
+    }
+  ]
+}

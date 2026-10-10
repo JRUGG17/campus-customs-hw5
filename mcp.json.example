@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "campus-customs": {
+      "command": "/ABSOLUTE/PATH/TO/campus-customs-hw5/venv/bin/python",
+      "args": ["/ABSOLUTE/PATH/TO/campus-customs-hw5/mcp_server/mcp_server.py"]
+    }
+  }
+}
