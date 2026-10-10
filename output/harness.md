@@ -136,6 +136,26 @@ Created by `mcp_server/db.py` after each reset. The original database never has 
 | `approve_request` | approvals | **Human only.** No agent has it. An agent's name is refused. |
 | `reject_request` | approvals, purchase_orders | **Human only.** Declines a request that is pending or approved-but-unpaid; a declined order is cancelled. |
 
+### The first three tools, and the ticket each one unlocks
+
+These were the three tools built first, one per open ticket. Each is tied to the ticket it helps resolve and says why it fits.
+
+| Tool | Table it reads | Ticket it helps unlock | Why this tool is right for that ticket |
+|---|---|---|---|
+| `check_stock(sku, size)` | `inventory` | **103** (the AI Club wants 20 size M hoodies) | It returns the 8 size M hoodies on hand for CC-HOOD-NAVY, so the agents see the shortfall of 12 before deciding anything about restocking or price. It also answers 101's question (the size S tee has 0). |
+| `get_invoice_status(invoice_id)` | `invoices`, joined to `vendors` and compared with `desk.date_today` | **101** (Tauhid's size S tee) | The tee is out of stock, and invoice 501 shows Bulldog Print Co ($840, due 2026-08-28) is open and overdue as of 2026-08-31. That unpaid invoice is the reason the vendor won't ship the restock. |
+| `get_lease_status(lease_id)` | `leases`, compared with `desk.date_today` | **102** (rent notice from Elm City Properties) | It returns $2,400 due 2026-09-02, which is 2 days until due, so Facilities can confirm the notice is right and that the rent is not yet overdue. |
+
+Each of the three was then called through the vibe coder's MCP connection and checked against the original database (`output/mcp_smoke.json`):
+
+| Tool | Prompt typed to the vibe coder | Result | Matches the database |
+|---|---|---|---|
+| `check_stock` | Using the campus-customs MCP tool, how many size M Basic Hoodies (CC-HOOD-NAVY) are in stock? I need it for ticket 103. | 8 units, Aisle A | yes |
+| `get_invoice_status` | Using the campus-customs MCP tool, look up invoice 501. Who is it owed to, and is it overdue? I need it for ticket 101. | Bulldog Print Co, $840, open, overdue | yes |
+| `get_lease_status` | Using the campus-customs MCP tool, check lease 1. How much is the rent, and how many days until it's due? I need it for ticket 102. | $2,400, 2 days until due, not overdue | yes |
+
+The other 15 tools were added when the agent team was built. The agent tables below show which agent uses each one, and `output/desk_tickets.html` shows which tools each ticket's run actually used.
+
 ## 3. The five agents
 
 All five run on one model, `gpt-6 luna`, through Portkey (`backend/llm.py`). Prompts are in `backend/prompts/`, one file each. The agents and the delegation loop are in `backend/team.py`, and the data types in `backend/models.py`. Each agent only sees the MCP tools on its own list, and every agent has a `delegate(to, task)` tool, so any agent can hand work to any other.
